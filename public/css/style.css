@@ -1,0 +1,49 @@
+.add_item{
+    color: white;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    font-size: 45pt;
+    text-align: center;
+    position: fixed;
+    bottom: 15%;
+    right: 10%;
+
+}
+
+.avatar-zone, .output_image{
+    width:250px;
+    height:250px;
+}
+.overlay-layer{
+    width:250px;
+    height:40px;
+    position:absolute;
+    margin-top:-40px;
+    opacity:0.5;
+    background-color:#000000;
+    z-index:0;
+    font-size:25px;
+    color:#FFFFFF;
+    text-align:center;
+    line-height:40px;
+}
+.upload_btn{
+    position:absolute;
+    width:200px;
+    height:40px;
+    margin-top:-40px;
+    z-index:10;
+    opacity:0;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+
