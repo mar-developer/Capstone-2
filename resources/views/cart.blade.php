@@ -7,10 +7,17 @@ Cart
 @section('content')
 <div class="container">
     @if(session()->has('message'))
-    <div class="alert alert-success">
+    <div class="alert alert-danger">
         {{ session()->get('message') }}
     </div>
 @endif
+
+ @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
+
 
     <h1 class="text-center mb-5 title">Cart Items</h1>
 
@@ -99,8 +106,10 @@ Cart
 
         </tbody>
     </table>
+    @if(Auth::user()->status == 'pending')
+    <button class="btn btn-danger float-right disabled">Account is still pending</button>
 
-    @if(!empty($item))
+    @elseif(!empty($item))
         <form method="post" action="/transaction/{{ Auth::user()->id }}">
             @csrf
             <button class="btn btn-primary float-right">Proceed to Checkout</button>

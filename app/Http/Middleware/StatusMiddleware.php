@@ -17,9 +17,9 @@ class StatusMiddleware
     {
 
         if ($request->user()->status == 'pending') {
-                return redirect('/home')->with('message', 'Account is for approval from the admin!');
+                return back()->with('message', 'Your account is waiting for approval from the admin!');
         }elseif ($request->user()->status == 'inactive') {
-                return redirect('/home')->with('message', 'Account is inactive');
+                return back()->with('message', 'Account is inactive');
         }
 
         return $next($request);

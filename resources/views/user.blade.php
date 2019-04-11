@@ -9,7 +9,7 @@ User Lists
     <h1 class="text-center title"> Users </h1>
 
     @forelse ($users as $user)
-    <div class="col-md-4 float-left">
+    <div class="col-md-4 float-left mb-4">
         <div class="card ">
             <img class="img-fluid mt-4" src="{{ asset("images/profile/$user->img_path") }}" style="height: 200px; width:200px; border-radius:50%; margin-left: 20%">
             <div class="card-body">

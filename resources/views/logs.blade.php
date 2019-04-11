@@ -13,10 +13,10 @@ Home
     <table class="table table-striped table-bordered table-dark">
         <tr>
             <th>#</th>
-            <th>@sortablelink('name')</th>
-            <th>@sortablelink('action')</th>
-            <th>@sortablelink('status')</th>
-            <th>@sortablelink('updated')</th>
+            <th>Name</th>
+            <th>Action</th>
+            <th>Status</th>
+            <th>Updated</th>
         </tr>
             @forelse($logs as $log)
             @if ($log->user_id == Auth::user()->id)

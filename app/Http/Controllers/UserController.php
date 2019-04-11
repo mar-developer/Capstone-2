@@ -76,6 +76,14 @@ class UserController extends Controller
         $user->access = $request->access;
         $user->save();
 
+        $log = new \App\logs;
+        $log->name = $user->first_name;
+        $log->action = 'account has been updated' ;
+        $log->status = $request->status;
+        $log->user_id = $id;
+
+        $log->save();
+
         return redirect('/user');
     }
 

@@ -14,7 +14,7 @@ class LogsController extends Controller
      */
     public function index()
     {
-        $logs = \App\logs::sortable()->paginate(10);
+        $logs = \App\logs::all();
 
         return view('logs', compact( 'logs'));
     }

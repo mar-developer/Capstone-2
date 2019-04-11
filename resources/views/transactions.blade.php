@@ -5,7 +5,7 @@ Transactions
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 
 
     <h1 class="text-center mb-5 title">Transactions</h1>
@@ -17,11 +17,12 @@ Transactions
             <tr>
                 <th>#</th>
                 <th>Image</th>
-                <th>Item Name</th>
-                <th>Price</th>
-                <th>Rent Date</th>
-                <th>Return Date</th>
-                <th>Duration</th>
+                <th>@sortablelink('Item Name')</th>
+                <th>@sortablelink('transaction_code', 'Transaction code')</th>
+                <th>@sortablelink('price', 'Price')</th>
+                <th>@sortablelink('rent_date', 'Rent Date')</th>
+                <th>@sortablelink('return_date', 'Return Date')</th>
+                <th class="text-nowrap">@sortablelink('duration', 'Duration')</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
@@ -39,9 +40,6 @@ Transactions
                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
                 <td><span>{{ $transaction->name }}</span>
                     <hr>
-                    <span>Transaction Code:
-                        <input class="form-control" value="{{ $transaction->transaction_code }}"></span>
-                    <hr>
                     <span>Item Status:
                     <span
                         @if ($transaction->status == "approved")
@@ -57,6 +55,7 @@ Transactions
                     </span>
                     </span>
                 </td>
+                <td><input class="form-control" value="{{ $transaction->transaction_code }}"></td>
                 <td class="text-nowrap">&#8369; {{ $transaction->price }}/day</td>
                 <td><input class="form-control mb-2" value="{{ $transaction->rent_date }}" readonly></td>
                 <td><input class="form-control mb-2" value="{{ $transaction->return_date }}" readonly></td>

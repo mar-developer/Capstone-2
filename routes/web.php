@@ -41,8 +41,6 @@ Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function ()
 
 Route::group(['middleware' => 'App\Http\Middleware\StatusMiddleware'], function () {
     Route::get('/logs', 'LogsController@index')->name('logs')->middleware('auth');
-    Route::get('/catalog', 'CatalogController@index')->name('catalog')->middleware('auth');
-    Route::get('/cart/{id}', 'ItemUserController@index')->name('cart')->middleware('auth');
     Route::get('/transactions/{id}', 'TransactionsController@index')->name('Transactions')->middleware('auth');
 
 });

@@ -18,6 +18,7 @@ class TransactionsController extends Controller
     public function index($id)
     {
         $user = \App\User::find($id);
+        $transactions = \App\transactions::sortable()->paginate(10);
         $transactions = \App\transactions::all();
 
         return view('/transactions', compact('user', 'transactions'));
@@ -107,7 +108,7 @@ class TransactionsController extends Controller
         $item->delete();
 
 
-        return redirect()->back()->with('message', 'Items has been successfully added in transaction and waiting for approval from the admin!');
+        return redirect()->back()->with( 'success', 'Items has been successfully added in transaction and waiting for approval from the admin!');
     }
 
     /**

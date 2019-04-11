@@ -89,5 +89,14 @@ class RegisterController extends Controller
             'img_path' => $fileName,
             ]);
 
+        $log = new \App\logs;
+        $log->name = 'User';
+        $log->action = 'account has been created';
+        $log->status = 'welcome';
+        $log->user_id = 0;
+
+        $log->save();
+
+
     }
 }
