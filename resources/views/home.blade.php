@@ -22,15 +22,15 @@ Home
             <li data-target="#carouselId" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item">
-                <img src="{{ asset('images/carousel/dims.jpg') }}" alt="Second slide" height="650px" width="auto">
+            <div class="carousel-item active">
+                <img src="{{ asset('images/carousel/dims.jpg') }}" alt="first slide" height="650px" width="auto">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Borderlands: The Handsome Collection</h3>
                     <p class="desc">Borderlands: The Handsome Collection is a compilation of first-person shooter video games developed by Gearbox Software and published by 2K Games.</p>
                 </div>
             </div>
-            <div class="carousel-item active">
-                <img src="{{ asset('images/carousel/GOW.jpg') }}" alt="First slide" height="650px" width="auto">
+            <div class="carousel-item">
+                <img src="{{ asset('images/carousel/GOW.jpg') }}" alt="Second slide" height="650px" width="auto">
                 <div class="carousel-caption d-none d-md-block">
                     <h3>God of war</h3>
                     <p class="desc">God of War is an action-adventure video game developed by Santa Monica Studio and published by Sony Interactive Entertainment. Released on April 20, 2018, for the PlayStation 4 console</p>
