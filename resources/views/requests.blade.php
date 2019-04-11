@@ -108,6 +108,7 @@ Requests
                             @php
                             $counter = 0;
                             $total = 0;
+                            $nice = '';
                             @endphp
 
                             {{-- @forelse ($items as $item) --}}
