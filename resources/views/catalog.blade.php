@@ -24,23 +24,23 @@ Catalog
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{ $item->id }}" class="btn btn-light col-md-12 btn-outline-info">
                                      Description
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne{{ $item->id }}" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                    <p class="card-text">{{ $item->description }}</p>
+                                    </a>
+                                </h4>
                             </div>
+                            <div id="collapseOne{{ $item->id }}" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p class="card-text">{{ $item->description }}</p>
+                                        <div class="card-body">
+                                            <p class="card-text">Price: &#8369; {{ $item->price }}/day</p>
+                                            <p class="card-text mt-2">Category: {{ $item->category }}</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <span style="margin-left:20px" class="text-nowrap">No. of copies that can be borrowed: 3</span>
+                                    <span style="margin-left:20px" class="text-nowrap">No. of available copies: {{  $count = \App\serials::where('items_id', $item->id)->where('status','available')->count() }}</span>
                         </div>
                     </div>
 
-            <div class="card-body">
-                <p class="card-text">Price: &#8369; {{ $item->price }}/day</p>
-                <p class="card-text mt-2">Category: {{ $item->category }}</p>
-            </div>
-                <hr>
-                <span style="margin-left:20px">No. of copies that can be borrowed: 3</span>
-                <span style="margin-left:20px">No. of available copies: {{  $count = \App\serials::where('items_id', $item->id)->where('status','available')->count() }}</span>
              <div class="card-footer bg-transparent">
                     <form action="/add_cart/{{ Auth::user()->id }}/{{ $item->id }}" method="post">
                         @csrf

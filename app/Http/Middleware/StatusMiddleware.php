@@ -16,9 +16,11 @@ class StatusMiddleware
     public function handle($request, Closure $next)
     {
 
-        if ($request->user()->status == 'pending' ) {
-                return redirect('/home');
-            }
+        if ($request->user()->status == 'pending') {
+                return redirect('/home')->with('message', 'Account is for approval from the admin!');
+        }elseif ($request->user()->status == 'inactive') {
+                return redirect('/home')->with('message', 'Account is inactive');
+        }
 
         return $next($request);
     }

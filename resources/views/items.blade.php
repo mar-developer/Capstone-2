@@ -37,7 +37,7 @@ Items
                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$item->img_path") }}" alt="{{ $item->img_path }}"></td>
                 <td style="width:200px" class="text-center">{{ $item->name }}
                 <hr>
-                <span>
+                <span class="text-nowrap">
                     No. of available copies: {{  $count = \App\serials::where('items_id', $item->id)->where('status','available')->count() }}
                 </span>
                 <span>

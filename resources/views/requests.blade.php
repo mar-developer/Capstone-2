@@ -94,7 +94,7 @@ Requests
                             <tr>
                                 <th>#</th>
                                 <th>Image</th>
-                                <th>Item Name</th>
+                                <th>Details</th>
                                 <th>Price</th>
                                 <th>Rent Date</th>
                                 <th>Return Date</th>
@@ -113,7 +113,7 @@ Requests
                             <tr>
                                 <td>{{ ++$counter }}</td>
                                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
-                                <td><span>{{ $transaction->name }}</span>
+                                <td><span>Title: {{ $transaction->name }}</span>
                                     <hr>
                                     <span>Transaction Code:
                                         <input class="form-control" value="{{ $transaction->transaction_code }}"></span>
@@ -130,9 +130,7 @@ Requests
                                                         @else
                                                         <option value="pending" {{ $transaction->status == "pending" ? "Selected" : "" }}>Pending</option>
                                                         @endif
-                                                        @if ($transaction->status == "approved")
                                                         <option value="returned" {{ $transaction->status == "returned" ? "Selected" : "" }}>Returned</option>
-                                                        @endif
                                                     </select>
 
                                                 </div>
