@@ -79,7 +79,6 @@ User Lists
         </div>
 
         <div class="card-footer bg-transparent text-right">
-            <button class="btn btn-primary btn-edit" {{ $user->email == "admin@admin.com" ? "disabled" : "" }} ><i class="fas fa-edit    "></i></button>
             <button class="btn btn-danger" {{ $user->email == "admin@admin.com" ? "disabled" : "" }} {{ $user->access == "admin" ? "disabled" : "" }} data-toggle="modal" data-target="#delete_modal{{ $user->id }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
         </div>
