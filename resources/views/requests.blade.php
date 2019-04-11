@@ -8,7 +8,7 @@ Requests
 <div class="container">
 
 
-    <h1 class="text-center mb-5">Requests</h1>
+    <h1 class="text-center mb-5 title">Requests</h1>
 
 
 
@@ -85,7 +85,7 @@ Requests
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h1 class="text-center mb-5">Transactions</h1>
+                    <h1 class="text-center mb-5 title" style="font-size:40pt">Transactions</h1>
 
 
 

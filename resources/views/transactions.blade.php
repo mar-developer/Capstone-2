@@ -8,7 +8,7 @@ Transactions
 <div class="container">
 
 
-    <h1 class="text-center mb-5">Transactions</h1>
+    <h1 class="text-center mb-5 title">Transactions</h1>
 
 
 

@@ -53,16 +53,41 @@ background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+
 }
 
 .nav-link:hover{
-    color: black;
-    border-bottom:  2px solid rgba(0,0,0,0.50);
-    border-bottom-color: #12c2e9;
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #2193b0;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed50, #2193b05d);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6dd5ed7c, #2193b077);
+    color: white;
+    border-bottom: 2px solid rgba(0,0,0,0.50);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 #nav-link{
-     border-left: 2px solid rgba(0,0,0,0.50);
-	border-bottom-left-radius: 4px;
-    border-left-style: groove;
+    color: black;
 }
+
+.title{
+    font-family: 'Kaushan Script', cursive;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    font-size: 5em;
+     text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 2px 0 #000,
+       2px 1px 0 #000;
+
+}
+
+.nav-link{
+    font-family: 'Kaushan Script', cursive;
+    color: #000000;
+    font-size: 1.5em;
+}
+
+
 
 
 

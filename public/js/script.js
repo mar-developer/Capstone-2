@@ -15,3 +15,24 @@ $(".image_input").change(function () {
     readURL(this);
 });
 
+$(document).ready(function () {
+    $("#contentbox").keyup(function () {
+        var box = $(this).val();
+        var main = box.length * 100;
+        var value = (main / 191);
+        var count = 191 - box.length;
+
+        if (box.length <= 191) {
+            $('#count').html(count);
+            $('#bar').animate(
+                {
+                    "width": value + '%',
+                }, 1);
+        }
+        else {
+            alert(' Full ');
+        }
+        return false;
+    });
+
+});

@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/UserAccount/{id}', 'UserAccount@index')->middleware('auth');
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function () {
 
@@ -32,7 +33,6 @@ Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function ()
 
     Route::get('/transactions/{id}', 'TransactionsController@index')->name('Transactions')->middleware('auth');
     Route::get('/cart/{id}', 'ItemUserController@index')->name('cart')->middleware('auth');
-    Route::get('/UserAccount/{id}', 'UserAccount@index')->middleware('auth');
     Route::get('/catalog', 'CatalogController@index')->name('catalog')->middleware('auth');
 
 });

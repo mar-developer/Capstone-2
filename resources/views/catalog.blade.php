@@ -6,7 +6,7 @@ Catalog
 
 @section('content')
 <div class="container">
-    <h1 class="text-center mb-3">Games Rental Shop</h1>
+    <h1 class="text-center mb-3 title" >Games Rental Shop</h1>
     <div class="card-deck">
 
         @php

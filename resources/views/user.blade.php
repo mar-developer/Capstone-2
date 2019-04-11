@@ -7,7 +7,7 @@ User Lists
 @section('content')
 <div class="container">
 
-    <h1 class="text-center"> User List</h1>
+    <h1 class="text-center title"> User List</h1>
 
     <table class="table table-light">
         <thead class="thead-light">

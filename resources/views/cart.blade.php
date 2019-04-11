@@ -12,7 +12,7 @@ Cart
     </div>
 @endif
 
-    <h1 class="text-center mb-5">Cart Items</h1>
+    <h1 class="text-center mb-5 title">Cart Items</h1>
 
     <table class="table table-striped table-bordered table-light">
         <thead class="thead-light">

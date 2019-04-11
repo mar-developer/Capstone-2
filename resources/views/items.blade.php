@@ -7,7 +7,7 @@ Items
 @section('content')
 <div class="container">
 
-    <h1 class="text-center">Games</h1>
+    <h1 class="text-center title">Games</h1>
     @if ($errors->any())
     <div class='alert alert-danger'>
         <ul>
@@ -142,8 +142,13 @@ Items
 
 
                                 <div class="form-group">
+
                                     <label >Game Description</label>
-                                    <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }} col-md-10 game_desc" type="text" name="description" rows="5" cols="42" style="text-align:left" required>{{ old('description') }}</textarea>
+                                    <textarea class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }} col-md-10 game_desc" id="contentbox" maxlength="191"  type="text" name="description" rows="5" cols="42" style="text-align:left" required>{{ old('description') }}</textarea>
+                                    <div>Remaining character left:
+                                    <div id="count">191</div>
+                                    <div id="barbox"><div id="bar"></div></div>
+                                    </div>
 
                                     @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">

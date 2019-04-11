@@ -9,7 +9,7 @@ User Lists
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="overflow-y:auto">
-                <div class="card-header text-center">My Account</div>
+                <div class="card-header text-center title" style="font-size:40pt">My Account</div>
 
                 <div class="card-body">
                     <form method="POST" action="/UserAccount_update/{{ $user->id }}" enctype="multipart/form-data">
