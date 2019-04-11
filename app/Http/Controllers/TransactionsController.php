@@ -70,7 +70,7 @@ class TransactionsController extends Controller
 
         foreach($user->items as $item) {
             $transactions = new transactions;
-            $serial = \App\serials::where('items_id', $item->id)->where('status','available')->first();
+            $serial = \App\serials::where('items_id', $item->id)->where('status','in cart')->first();
             $serial->status = 'for approval';
 
 
@@ -92,6 +92,15 @@ class TransactionsController extends Controller
             $transactions->users_id = $user_id;
             $transactions->save();
             $serial->save();
+
+
+            $log = new \App\logs;
+            $log->name = $item->name;
+            $log->action = 'this has been barrowed and is for approval from the admin';
+            $log->status = 'for approval';
+            $log->user_id = $user_id;
+
+            $log->save();
         }
 
         $item = \App\item_user::where('user_id', $user_id);

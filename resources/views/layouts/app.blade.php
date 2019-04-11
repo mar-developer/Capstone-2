@@ -88,14 +88,14 @@
                             <a class="nav-link" id="nav-link" href="/transactions/{{ Auth::user()->id }}">Transactions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="nav-link" href="#">History</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('logs') }}">History</a>
                         </li>
                         @endif
 
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" id="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <img class="img-fluid" src=" {{ url('images/profile/'.Auth::user()->img_path) }}" style="width:25px; height:25px; border-radius:50%"> {{ Auth::user()->first_name }} <span class="caret"></span>
+                                <img class="img-fluid" src=" {{ url('images/profile/'.Auth::user()->img_path) }}" style="width:40px; height:40px; border-radius:50%"> {{ Auth::user()->first_name }} <span class="caret"></span>
                             </a>
 
 

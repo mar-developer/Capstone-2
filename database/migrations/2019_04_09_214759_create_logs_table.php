@@ -15,15 +15,9 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('img_path');
             $table->string('name');
-            $table->integer('price');
-            $table->string('rent date');
-            $table->string('return date');
-            $table->integer('duration');
+            $table->integer('action');
             $table->string('status');
-            $table->string('serial_code');
-            $table->string('transactions_code');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

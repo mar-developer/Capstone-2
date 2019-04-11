@@ -262,11 +262,11 @@ Items
                                                     <td
                                                     @if ($serial->status == "available")
                                                     class="btn btn-success ml-4 mt-1"
-                                                    @elseif($serial->status == "barrowed")
+                                                    @elseif($serial->status == "in cart")
                                                     class="btn btn-info ml-4 mt-1"
                                                     @elseif($serial->status == "for approval")
                                                     class="btn btn-warning ml-4 mt-1"
-                                                    @elseif($serial->status == "damaged")
+                                                    @elseif($serial->status == "rejected")
                                                     class="btn btn-danger ml-4 mt-1"
                                                     @endif
                                                     >

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\item_user;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class ItemUserController extends Controller
@@ -44,8 +45,23 @@ class ItemUserController extends Controller
         $cart->items_id = $item_id;
         $cart->user_id = $user_id;
         $cart->duration = $request->duration;
-
         $cart->save();
+
+        $serial = \App\serials::where('items_id', $item_id)->where('status', 'available')->first();
+        $serial->status = 'in cart';
+        $serial->save();
+
+
+        $item = \App\items::find($item_id);
+
+        $log = new \App\logs;
+        $log->name = $item->name;
+        $log->action = 'has been added to the cart';
+        $log->status = 'in cart';
+        $log->user_id = $user_id;
+
+        $log->save();
+
 
         return redirect('/catalog');
     }

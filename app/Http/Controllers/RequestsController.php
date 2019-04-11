@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RequestsController extends Controller
 {
@@ -82,6 +83,16 @@ class RequestsController extends Controller
             $transactions->status = $request->status;
 
             $transactions->save();
+
+
+            $log = new \App\logs;
+            $log->name = $transactions->name;
+            $log->action = 'you request has been';
+            $log->status = $request->status;
+            $log->user_id = $transactions->users_id;
+
+            $log->save();
+
 
         return back();
     }
