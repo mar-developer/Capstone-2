@@ -62,7 +62,9 @@ Requests
             @endif
             @endif
             @empty
-
+            <tr>
+                <td colspan="8" class="text-center">No item to show</td>
+            </tr>
             @endforelse
 
         </tbody>
