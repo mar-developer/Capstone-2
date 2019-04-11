@@ -51,11 +51,11 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif
                         @else
@@ -63,37 +63,37 @@
 
                         @if (Auth::user()->access == 'admin' || Auth::user()->access == 'super_admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user') }}">Users</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('user') }}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('items') }}">Games</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('items') }}">Games</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('requests') }}">Requests</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('requests') }}">Requests</a>
                         </li>
                         @endif
 
 
                         @if (Auth::user()->access == 'user')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('catalog') }}">Catalog</a>
+                            <a class="nav-link" id="nav-link" href="{{ route('catalog') }}">Catalog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/cart/{{ Auth::user()->id }}">Cart <span class="badge badge-primary">
+                            <a class="nav-link" id="nav-link" href="/cart/{{ Auth::user()->id }}">Cart <span class="badge badge-primary">
                                 {{  $count = \App\item_user::where('user_id', Auth::user()->id)->count() }}
                             </span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/transactions/{{ Auth::user()->id }}">Transactions</a>
+                            <a class="nav-link" id="nav-link" href="/transactions/{{ Auth::user()->id }}">Transactions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">History</a>
+                            <a class="nav-link" id="nav-link" href="#">History</a>
                         </li>
                         @endif
 
 
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" id="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <img class="img-fluid" src=" {{ url('images/profile/'.Auth::user()->img_path) }}" style="width:25px; height:25px; border-radius:50%"> {{ Auth::user()->first_name }} <span class="caret"></span>
                             </a>
 
