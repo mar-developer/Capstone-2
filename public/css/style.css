@@ -87,7 +87,9 @@ background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+
     font-size: 1.5em;
 }
 
-
+.carousel-caption{
+    background: rgba(12, 25, 38, 0.50);
+}
 
 
 

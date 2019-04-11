@@ -69,7 +69,7 @@ Items
 
     {{-- Add item modal --}}
     <div>
-        <button class="btn btn-success add_item" data-toggle="modal" data-target="#add_item" type="button"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-dark add_item" data-toggle="modal" data-target="#add_item" type="button"><i class="fas fa-plus"></i></button>
     </div>
 
     <div class="modal fade" id="add_item" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
