@@ -112,7 +112,7 @@ Requests
                             @endphp
 
                             {{-- @forelse ($items as $item) --}}
-                            @forelse ($transactions as $transaction)
+                            @foreach ($transactions as $transaction)
                             <tr>
                                 <td>{{ ++$counter }}</td>
                                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
@@ -157,11 +157,11 @@ Requests
                                         $total += $transaction->price * $transaction->duration;
                                         @endphp
                                     </tr>
-                                    @empty
+                                    {{-- @empty
                                     <tr>
                                         <td colspan="8" class="text-center">No item to show</td>
-                                    </tr>
-                                    @endforelse
+                                    </tr> --}}
+                                    @endforeach
 
 
                                     <tr>
