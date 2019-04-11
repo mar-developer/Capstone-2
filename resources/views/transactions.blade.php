@@ -5,24 +5,24 @@ Transactions
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
 
 
     <h1 class="text-center mb-5 title">Transactions</h1>
 
 
 
-    <table class="table table-striped table-bordered table-light">
-        <thead class="thead-light">
+    <table class="table table-dark table-striped table-des">
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>Image</th>
-                <th>@sortablelink('Item Name')</th>
-                <th>@sortablelink('transaction_code', 'Transaction code')</th>
-                <th>@sortablelink('price', 'Price')</th>
-                <th>@sortablelink('rent_date', 'Rent Date')</th>
-                <th>@sortablelink('return_date', 'Return Date')</th>
-                <th class="text-nowrap">@sortablelink('duration', 'Duration')</th>
+                <th id="trans-link">@sortablelink('Item Name')</th>
+                {{-- <th id="trans-link">@sortablelink('transaction_code', 'Transaction code')</th> --}}
+                <th id="trans-link">@sortablelink('price', 'Price')</th>
+                <th id="trans-link">@sortablelink('rent_date', 'Rent Date')</th>
+                <th id="trans-link">@sortablelink('return_date', 'Return Date')</th>
+                <th id="text-nowrap">@sortablelink('duration', 'Duration')</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
@@ -40,6 +40,9 @@ Transactions
                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
                 <td><span>{{ $transaction->name }}</span>
                     <hr>
+                    <span>Transaction code</span>
+                    <input class="form-control" value="{{ $transaction->transaction_code }}">
+                    <hr>
                     <span>Item Status:
                     <span
                         @if ($transaction->status == "approved")
@@ -55,7 +58,7 @@ Transactions
                     </span>
                     </span>
                 </td>
-                <td><input class="form-control" value="{{ $transaction->transaction_code }}"></td>
+               {{--  <td><input class="form-control" value="{{ $transaction->transaction_code }}"></td> --}}
                 <td class="text-nowrap">&#8369; {{ $transaction->price }}/day</td>
                 <td><input class="form-control mb-2" value="{{ $transaction->rent_date }}" readonly></td>
                 <td><input class="form-control mb-2" value="{{ $transaction->return_date }}" readonly></td>

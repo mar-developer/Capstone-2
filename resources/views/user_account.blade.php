@@ -7,15 +7,15 @@ User Lists
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card" style="overflow-y:auto">
-                <div class="card-header text-center title" style="font-size:40pt">My Account</div>
-
+                <div class="card-header text-center title" style="font-size:35pt">My Account</div>
+                <hr>
                 <div class="card-body">
                     <form method="POST" action="/UserAccount_update/{{ $user->id }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div style="margin-left:33%; margin-bottom:20px">
+                        <div style="margin-left:30%; margin-bottom:20px">
                             <div class="avatar-zone">
                                 <img class="img-fluid output_image" style="object-fit:cover ; border-radius:50%;" src="{{ asset("images/profile/$user->img_path") }}" accept="image/*" onchange="preview_image(event)">
                             </div>

@@ -21,8 +21,8 @@ Cart
 
     <h1 class="text-center mb-5 title">Cart Items</h1>
 
-    <table class="table table-striped table-bordered table-light">
-        <thead class="thead-light">
+    <table class="table table-dark table-striped table-des">
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>Image</th>

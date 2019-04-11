@@ -1,3 +1,4 @@
+
 .add_item{
     color: white;
     height: 100px;
@@ -47,24 +48,17 @@
 }
 
 body{
-background: #12c2e9;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: url("/images/p4.jpg"); no-repeat center center;
+background-size: cover;
 }
 
 .nav-link:hover{
-    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
-    background: #2193b0;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed50, #2193b05d);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6dd5ed7c, #2193b077);
     color: white;
-    border-bottom: 2px solid rgba(0,0,0,0.50);
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom: 2px solid white;
 }
 
 #nav-link{
-    color: black;
+    color: white;
 }
 
 .title{
@@ -83,7 +77,7 @@ background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+
 
 .nav-link{
     font-family: 'Kaushan Script', cursive;
-    color: #000000;
+    color: white;
     font-size: 1.5em;
 }
 
@@ -91,7 +85,66 @@ background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+
     background: rgba(12, 25, 38, 0.50);
 }
 
+.table-des{
+  background-color: rgba(12, 2, 2, 0.70);
+  color: white;
+  border-radius: 1rem;
+}
+
+hr{
+    background: white;
+}
+
+.modal-backdrop {
+  background-color: transparent !important;
+}
+
+
+.card{
+  background-color: rgba(12, 2, 2, 0.70);
+  color: white;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.card-body .card-text {
+  background: $dark2;
+  &::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    border: 1rem solid transparent;
+    border-right: 1.25rem solid $dark2;
+  }
+}
 
 
 
+.navbar-laravel {
+    background-color: rgba(12, 2, 2, 0.70);
+    color: white;
 
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.modal-content{
+    background-color: rgba(12, 2, 2, 0.90);
+  color: white;
+  border-radius: 1rem;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: white
+}
+
+a{
+    color: white
+}

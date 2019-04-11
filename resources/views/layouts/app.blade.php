@@ -93,7 +93,7 @@
                         @endif
 
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="nav-link">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" id="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <img class="img-fluid" src=" {{ url('images/profile/'.Auth::user()->img_path) }}" style="width:40px; height:40px; border-radius:50%"> {{ Auth::user()->first_name }} <span class="caret"></span>
                             </a>

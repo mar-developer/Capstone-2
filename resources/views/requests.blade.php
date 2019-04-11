@@ -12,8 +12,8 @@ Requests
 
 
 
-    <table class="table table-striped table-bordered table-light">
-        <thead class="thead-light">
+    <table class="table table-dark table-striped table-des">
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>Profile</th>
@@ -91,7 +91,7 @@ Requests
 
 
 
-                    <table class="table table-striped table-bordered table-light">
+                    <table class="table table-striped table-bordered table-dark">
                         <thead class="thead-light">
                             <tr>
                                 <th>#</th>

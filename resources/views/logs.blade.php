@@ -10,7 +10,7 @@ Home
     $counter=0;
 @endphp
 <div class="col-md-12">
-    <table class="table table-striped table-bordered table-dark">
+    <table class="table table-striped table-bordered table-dark table-des">
         <tr>
             <th>#</th>
             <th>Name</th>

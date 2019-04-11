@@ -18,8 +18,8 @@ Items
     </div>
     @endif
 
-    <table class="table table-light table-bordered table-striped">
-        <thead class="thead-light">
+    <table class="table table-dark table-striped table-des">
+        <thead class="thead-dark">
             <tr>
                 <th class="text-center">#</th>
                 <th class="text-center" style="width:200px">Image</th>
@@ -79,7 +79,7 @@ Items
                     <h5 class="modal-title" style="margin-left:400px" id="my-modal-title">Add Game</h5>
 
                     <button class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" style="color:white">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -234,8 +234,8 @@ Items
 
                                 <div class="form-group">
                                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                        <table class="table table-light table-bordered table-striped">
-                                            <thead class="thead-light">
+                                        <table class="table table-dark table-striped table-des">
+                                            <thead class="thead-dark">
                                                 <tr>
                                                     <th class="text-center">#</th>
                                                     <th class="text-center">Serial #</th>
