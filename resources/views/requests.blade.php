@@ -92,7 +92,7 @@ Requests
 
 
                     <table class="table table-striped table-bordered table-dark">
-                        <thead class="thead-light">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
                                 <th>Image</th>

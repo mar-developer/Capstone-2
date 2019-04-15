@@ -95,10 +95,6 @@ hr{
     background: white;
 }
 
-.modal-backdrop {
-  background-color: transparent !important;
-}
-
 
 .card{
   background-color: rgba(12, 2, 2, 0.70);
