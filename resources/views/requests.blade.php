@@ -113,6 +113,7 @@ Requests
 
                             {{-- @forelse ($items as $item) --}}
                             @foreach ($transactions as $transaction)
+                            @if ($transaction->status !== "returned")
                             <tr>
                                 <td>{{ ++$counter }}</td>
                                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
@@ -161,6 +162,7 @@ Requests
                                     <tr>
                                         <td colspan="8" class="text-center">No item to show</td>
                                     </tr> --}}
+                                    @endif
                                     @endforeach
 
 

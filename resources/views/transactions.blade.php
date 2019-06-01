@@ -34,7 +34,7 @@ Transactions
 
             {{-- @forelse ($items as $item) --}}
             @forelse ($transactions as $transaction)
-            @if ($transaction->users_id == Auth::user()->id)
+            @if ($transaction->users_id == Auth::user()->id && $transaction->status !== "returned")
             <tr>
                 <td>{{ ++$counter }}</td>
                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
