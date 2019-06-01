@@ -8,7 +8,7 @@ Requests
 <div class="container">
 
 
-    <h1 class="text-center mb-5 title">Requests</h1>
+    <h1 class="text-center mb-5 title">R</h1>
 
 
 
