@@ -60,7 +60,7 @@ Route::delete('/delete_cart_item/{id}', 'ItemUserController@destroy');
 
 
 //user_account crud
-Route::put('/UserAccount_update/{id}', 'UserAccountController@update');
+Route::put('/UserAccount_update/{id}', 'UserAccount@update');
 
 //user crud
 Route::put('/user/{id}', 'UserController@update');

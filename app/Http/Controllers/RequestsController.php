@@ -15,7 +15,7 @@ class RequestsController extends Controller
     public function index()
     {
         $users = \App\User::all();
-        $transactions = \App\transactions::all();
+        $transactions = \App\transactions::where('status', 'approved')->orWhere('status','pending')->get();
 
         return view( '/requests', compact('users', 'transactions'));
     }

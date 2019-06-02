@@ -28,18 +28,12 @@ Requests
         <tbody>
             @php
             $counter = 0;
-            $total = 0;
             @endphp
 
-            {{-- @forelse ($items as $item) --}}
-            @forelse ($users as $user)
-            @php
-            $transaction = \App\transactions::where('users_id', 2)->first();
-            @endphp
-            @if (!empty($transaction))
-            @if ($user->id == $transaction->users_id)
-
+            @forelse ($transactions as $transaction)
             <tr>
+                @foreach ($users as $user)
+                @if ($transaction->users_id == $user->id)
                 <td>{{ ++$counter }}</td>
                 <td><img class="img-fluid" src="{{ asset("images/profile/$user->img_path") }}" style="height: 50px; width:50px; border-radius:50%"></td>
                 <td>{{ ucfirst($user->first_name) }}</td>
@@ -58,14 +52,15 @@ Requests
                 <td>
                     <button class="btn btn-primary btn-edit" data-toggle="modal" data-target="#requests{{ $user->id }}">Request</button>
                 </td>
+                @endif
+                @endforeach
             </tr>
-            @endif
-            @endif
             @empty
             <tr>
-                <td colspan="8" class="text-center">No item to show</td>
+                <td colspan="8" class="text-center">No uSers to show</td>
             </tr>
             @endforelse
+
 
         </tbody>
     </table>
@@ -108,13 +103,13 @@ Requests
                             @php
                             $counter = 0;
                             $total = 0;
-                            $nice = '';
                             @endphp
 
                             {{-- @forelse ($items as $item) --}}
-                            @foreach ($transactions as $transaction)
-                            @if ($transaction->status !== "returned")
+                            @forelse ($transactions as $transaction)
                             <tr>
+
+                                @if ($transaction->users_id == $user->id)
                                 <td>{{ ++$counter }}</td>
                                 <td><img class="img-fluid" style="height:150px; width:150px; object-fit:contain" src="{{ asset("images/games/$transaction->img_path") }}" alt="{{ $transaction->img_path }}"></td>
                                 <td><span>Title: {{ $transaction->name }}</span>
@@ -122,64 +117,65 @@ Requests
                                     <span>Transaction Code:
                                         <input class="form-control" value="{{ $transaction->transaction_code }}"></span>
                                         <hr>
-                                            <form method="post" action="/Approve_request/{{$transaction->id}}/{{ $transaction->serial_code }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="form-group row">
-                                                    <label class="col-md-5">Item Status:</label>
-                                                    <select class="form-control col-md-6" name="status" {{ $transaction->status == "returned" ? 'disabled' : '' }}>
-                                                        <option value="approved" {{ $transaction->status == "approved" ? "Selected" : "" }}>Approved</option>
-                                                        <option value="rejected" {{ $transaction->status == "rejected" ? "Selected" : "" }}>Rejected</option>
-                                                        @if ($transaction->status == "rejected" || $transaction->status == "approved")
-                                                        @else
-                                                        <option value="pending" {{ $transaction->status == "pending" ? "Selected" : "" }}>Pending</option>
-                                                        @endif
-                                                        <option value="returned" {{ $transaction->status == "returned" ? "Selected" : "" }}>Returned</option>
-                                                    </select>
+                                        <form method="post" action="/Approve_request/{{$transaction->id}}/{{ $transaction->serial_code }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group row">
+                                                <label class="col-md-5">Item Status:</label>
+                                                <select class="form-control col-md-6" name="status" {{ $transaction->status == "returned" ? 'disabled' : '' }}>
+                                                    <option value="approved" {{ $transaction->status == "approved" ? "Selected" : "" }}>Approved</option>
+                                                    <option value="rejected" {{ $transaction->status == "rejected" ? "Selected" : "" }}>Rejected</option>
+                                                    @if ($transaction->status == "rejected" || $transaction->status == "approved")
+                                                    @else
+                                                    <option value="pending" {{ $transaction->status == "pending" ? "Selected" : "" }}>Pending</option>
+                                                    @endif
+                                                    <option value="returned" {{ $transaction->status == "returned" ? "Selected" : "" }}>Returned</option>
+                                                </select>
 
-                                                </div>
-                                                <div class="form-group">
-                                                    <button class="btn btn-primary col-md-12" {{ $transaction->status == "returned" ? 'disabled' : '' }}>Save Changes</button>
-                                                </div>
-                                                @if ($transaction->status == "returned")
-                                                    <span class="text-danger" role="alert">
-                                                        <strong>This has been returned</strong>
-                                                    </span>
-                                                @endif
-                                            </form>
-                                        </td>
-                                        <td class="text-nowrap">&#8369; {{ $transaction->price }}/day</td>
-                                        <td><input class="form-control mb-2" value="{{ $transaction->rent_date }}" readonly></td>
-                                        <td><input class="form-control mb-2" value="{{ $transaction->return_date }}" readonly></td>
-                                        <td>{{ $transaction->duration }} days</td>
-                                        <td>&#8369; {{ $transaction->price * $transaction->duration }}</td>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-primary col-md-12" {{ $transaction->status == "returned" ? 'disabled' : '' }}>Save Changes</button>
+                                            </div>
+                                            @if ($transaction->status == "returned")
+                                            <span class="text-danger" role="alert">
+                                                <strong>This has been returned</strong>
+                                            </span>
+                                            @endif
+                                        </form>
+                                    </td>
+                                    <td class="text-nowrap">&#8369; {{ $transaction->price }}/day</td>
+                                    <td><input class="form-control mb-2" value="{{ $transaction->rent_date }}" readonly></td>
+                                    <td><input class="form-control mb-2" value="{{ $transaction->return_date }}" readonly></td>
+                                    <td>{{ $transaction->duration }} days</td>
+                                    <td>&#8369; {{ $transaction->price * $transaction->duration }}</td>
 
-                                        @php
-                                        $total += $transaction->price * $transaction->duration;
-                                        @endphp
-                                    </tr>
-                                    {{-- @empty
-                                    <tr>
-                                        <td colspan="8" class="text-center">No item to show</td>
-                                    </tr> --}}
+                                    @php
+                                    $total += $transaction->price * $transaction->duration;
+                                    @endphp
+
                                     @endif
-                                    @endforeach
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">No item to show</td>
+                                </tr>
+                                @endforelse
 
 
-                                    <tr>
-                                        <td colspan="7" class="text-right">Total</td>
-                                        <td colspan="1">&#8369; {{ $total }}</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="7" class="text-right">Total</td>
+                                    <td colspan="1">&#8369; {{ $total }}</td>
+                                </tr>
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-            @endforeach
-
         </div>
-        @endsection
+
+        @endforeach
+
+    </div>
+    @endsection

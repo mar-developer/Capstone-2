@@ -287,7 +287,7 @@ Items
                                             @endif
                                             @empty
                                             <tr>
-                                                <td colspan="3" class="text-center">No Item Available</td>
+                                                <td colspan="3" class="text-center">No other requests</td>
                                             </tr>
                                             @endforelse
 
