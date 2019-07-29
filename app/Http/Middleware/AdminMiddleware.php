@@ -15,10 +15,12 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->access == 'user' ) {
-                return redirect('/home');
+        if (Session::has('user')) {
+            if (Session::get('user')->isAdmin == true) {
+                return $next($request);
             }
-
-        return $next($request);
+        } else {
+            return redirect('/');
+        }
     }
 }
