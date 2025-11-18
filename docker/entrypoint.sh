@@ -17,6 +17,19 @@ if [ ! -f "composer.json" ]; then
     exit 1
 fi
 
+# Create .env file from .env.example if it doesn't exist
+if [ ! -f ".env" ]; then
+    if [ -f ".env.example" ]; then
+        echo "Creating .env file from .env.example..."
+        cp .env.example .env
+        echo "✓ .env file created"
+    else
+        echo "WARNING: Neither .env nor .env.example found"
+    fi
+else
+    echo "✓ .env file exists"
+fi
+
 # Install/update composer dependencies if vendor doesn't exist or is empty
 if [ ! -d "vendor" ] || [ -z "$(ls -A vendor 2>/dev/null)" ]; then
     echo "Installing Composer dependencies..."
