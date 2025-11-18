@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -25,8 +25,6 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'first_name' => 'John',
@@ -39,8 +37,6 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'first_name' => 'Jane',
@@ -53,8 +49,6 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'first_name' => 'Bob',
@@ -67,8 +61,6 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'first_name' => 'Alice',
@@ -81,8 +73,6 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'first_name' => 'Inactive',
@@ -95,11 +85,38 @@ class UserSeeder extends Seeder
                 'status' => 'inactive',
                 'img_path' => 'default-avatar.png',
                 'email_verified_at' => now(),
-                'created_at' => now(),
-                'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Mike',
+                'last_name' => 'Wilson',
+                'address' => '777 Test Avenue, User City',
+                'contact_number' => '5551234567',
+                'email' => 'mike@capstone.com',
+                'password' => Hash::make('password123'),
+                'access' => 'user',
+                'status' => 'active',
+                'img_path' => 'default-avatar.png',
+                'email_verified_at' => now(),
+            ],
+            [
+                'first_name' => 'Sarah',
+                'last_name' => 'Davis',
+                'address' => '888 Park Street, User City',
+                'contact_number' => '5559876543',
+                'email' => 'sarah@capstone.com',
+                'password' => Hash::make('password123'),
+                'access' => 'user',
+                'status' => 'active',
+                'img_path' => 'default-avatar.png',
+                'email_verified_at' => now(),
             ],
         ];
 
-        DB::table('users')->insert($users);
+        foreach ($users as $userData) {
+            User::updateOrCreate(
+                ['email' => $userData['email']],
+                $userData
+            );
+        }
     }
 }
