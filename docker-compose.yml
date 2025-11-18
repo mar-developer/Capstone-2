@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: capstone-laravel-app
+    container_name: capstone-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - capstone-network
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=capstone_db
+      - DB_USERNAME=capstone_user
+      - DB_PASSWORD=capstone_password
+
+  db:
+    image: mysql:8.0
+    container_name: capstone-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: capstone_db
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: capstone_user
+      MYSQL_PASSWORD: capstone_password
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - capstone-network
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: capstone-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    networks:
+      - capstone-network
+    depends_on:
+      - db
+
+networks:
+  capstone-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
