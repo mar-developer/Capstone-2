@@ -43,9 +43,14 @@ echo.
 echo [OK] Containers started successfully
 echo.
 
-REM Wait for database to be ready
-echo Waiting for database to be ready...
-timeout /t 10 /nobreak >nul
+REM Wait for application setup (dependencies installation + database)
+echo Installing dependencies and waiting for database...
+echo This may take a few minutes on first run...
+timeout /t 30 /nobreak >nul
+echo.
+echo Checking application status...
+docker-compose logs app | findstr "Application ready"
+echo.
 
 REM Generate app key if needed
 findstr /C:"APP_KEY=" .env | findstr /C:"APP_KEY=$" >nul

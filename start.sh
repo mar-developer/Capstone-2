@@ -41,9 +41,14 @@ echo ""
 echo "✓ Containers started successfully"
 echo ""
 
-# Wait for database to be ready
-echo "Waiting for database to be ready..."
-sleep 10
+# Wait for application setup (dependencies installation + database)
+echo "Installing dependencies and waiting for database..."
+echo "This may take a few minutes on first run..."
+sleep 30
+echo ""
+echo "Checking application status..."
+docker-compose logs app | grep "Application ready" || echo "Still initializing..."
+echo ""
 
 # Check if app key exists
 if grep -q "APP_KEY=$" .env || grep -q "APP_KEY=\"\"" .env; then
