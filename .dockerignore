@@ -2,9 +2,7 @@
 .gitignore
 .gitattributes
 .env
-.env.example
 .editorconfig
-README.md
 node_modules
 vendor
 storage/logs/*
@@ -19,5 +17,6 @@ npm-debug.log
 yarn-error.log
 .vscode
 .idea
-*.md
+DOCKER.md
+TROUBLESHOOTING.md
 docker-compose.yml

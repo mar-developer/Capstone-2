@@ -6,8 +6,19 @@ echo "Starting Laravel Application..."
 # Navigate to application directory
 cd /var/www/html
 
+# Check if composer.json exists
+if [ ! -f "composer.json" ]; then
+    echo "ERROR: composer.json not found in /var/www/html"
+    echo "Current directory contents:"
+    ls -la /var/www/html
+    echo ""
+    echo "This usually means the application files were not copied correctly."
+    echo "Please rebuild the Docker image: docker-compose build --no-cache"
+    exit 1
+fi
+
 # Install/update composer dependencies if vendor doesn't exist or is empty
-if [ ! -d "vendor" ] || [ -z "$(ls -A vendor)" ]; then
+if [ ! -d "vendor" ] || [ -z "$(ls -A vendor 2>/dev/null)" ]; then
     echo "Installing Composer dependencies..."
     composer install --no-interaction --prefer-dist --optimize-autoloader
 else
