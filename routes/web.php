@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,60 +20,60 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/UserAccount/{id}', 'UserAccount@index')->middleware('auth');
+Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout']);
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/UserAccount/{id}', [\App\Http\Controllers\UserAccount::class, 'index'])->middleware('auth');
 
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function () {
 
-    Route::get('/user', 'UserController@index')->name('user')->middleware('auth');
-    Route::get('/items', 'ItemsController@index')->name('items')->middleware('auth');
-    Route::get( '/requests', 'RequestsController@index')->name('requests')->middleware('auth');
+    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user')->middleware('auth');
+    Route::get('/items', [\App\Http\Controllers\ItemsController::class, 'index'])->name('items')->middleware('auth');
+    Route::get( '/requests', [\App\Http\Controllers\RequestsController::class, 'index'])->name('requests')->middleware('auth');
 
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function () {
 
-    Route::get('/logs', 'LogsController@index')->name('logs')->middleware('auth');
-    Route::get('/transactions/{id}', 'TransactionsController@index')->name('Transactions')->middleware('auth');
-    Route::get('/cart/{id}', 'ItemUserController@index')->name('cart')->middleware('auth');
-    Route::get('/catalog', 'CatalogController@index')->name('catalog')->middleware('auth');
-    Route::get('/logs', 'LogsController@index')->name('logs')->middleware('auth');
+    Route::get('/logs', [\App\Http\Controllers\LogsController::class, 'index'])->name('logs')->middleware('auth');
+    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions')->middleware('auth');
+    Route::get('/cart/{id}', [\App\Http\Controllers\ItemUserController::class, 'index'])->name('cart')->middleware('auth');
+    Route::get('/catalog', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog')->middleware('auth');
+    Route::get('/logs', [\App\Http\Controllers\LogsController::class, 'index'])->name('logs')->middleware('auth');
 
 });
 
 
 Route::group(['middleware' => 'App\Http\Middleware\StatusMiddleware'], function () {
-    Route::get('/transactions/{id}', 'TransactionsController@index')->name('Transactions')->middleware('auth');
+    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions')->middleware('auth');
 
 });
 
 
 
-Route::post('/transaction/{user_id}', 'TransactionsController@store')->middleware('auth');
-Route::put('/Approve_request/{id}/{serial_code}', 'RequestsController@update')->middleware('auth');
+Route::post('/transaction/{user_id}', [\App\Http\Controllers\TransactionsController::class, 'store'])->middleware('auth');
+Route::put('/Approve_request/{id}/{serial_code}', [\App\Http\Controllers\RequestsController::class, 'update'])->middleware('auth');
 
 
 
 
 //cart crud
-Route::post('/add_cart/{user_id}/{item_id}', 'ItemUserController@store');
-Route::put('/edit_date/{id}', 'ItemUserController@update');
-Route::delete('/delete_cart_item/{id}', 'ItemUserController@destroy');
+Route::post('/add_cart/{user_id}/{item_id}', [\App\Http\Controllers\ItemUserController::class, 'store']);
+Route::put('/edit_date/{id}', [\App\Http\Controllers\ItemUserController::class, 'update']);
+Route::delete('/delete_cart_item/{id}', [\App\Http\Controllers\ItemUserController::class, 'destroy']);
 
 
 //user_account crud
-Route::put('/UserAccount_update/{id}', 'UserAccount@update');
+Route::put('/UserAccount_update/{id}', [\App\Http\Controllers\UserAccount::class, 'update']);
 
 //user crud
-Route::put('/user/{id}', 'UserController@update');
-Route::delete('/user/{id}', 'UserController@destroy');
+Route::put('/user/{id}', [\App\Http\Controllers\UserController::class, 'update']);
+Route::delete('/user/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
 
 //item crud
-Route::post('/AddItem', 'ItemsController@create');
-Route::delete('/DeleteItem/{id}', 'ItemsController@destroy');
-Route::put('/Edit_item/{id}', 'ItemsController@update');
+Route::post('/AddItem', [\App\Http\Controllers\ItemsController::class, 'create']);
+Route::delete('/DeleteItem/{id}', [\App\Http\Controllers\ItemsController::class, 'destroy']);
+Route::put('/Edit_item/{id}', [\App\Http\Controllers\ItemsController::class, 'update']);
 
 //serial crud
-Route::get('/add_copy/{id}', 'SerialsController@create');
-Route::get('/delete_serial/{id}', 'SerialsController@destroy');
+Route::get('/add_copy/{id}', [\App\Http\Controllers\SerialsController::class, 'create']);
+Route::get('/delete_serial/{id}', [\App\Http\Controllers\SerialsController::class, 'destroy']);
