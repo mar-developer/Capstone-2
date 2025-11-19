@@ -20,6 +20,10 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        port: 3005,
+        host: true,
+    },
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
