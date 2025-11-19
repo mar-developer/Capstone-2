@@ -9,7 +9,8 @@ class transactions extends Model
 {
     use Sortable;
     protected $fillable = [
-        'name', 'action', 'status'
+        'transaction_code', 'serial_code', 'name', 'img_path', 'rent_date', 
+        'return_date', 'duration', 'price', 'status', 'items_id', 'users_id'
     ];
     public $sortable = ['id', 'name', 'price', 'rent_date', 'return_date', 'duration'];
 }
