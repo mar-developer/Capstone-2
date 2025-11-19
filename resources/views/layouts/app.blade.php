@@ -29,6 +29,16 @@
 
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="text-align: center; color: white;">
+            <div class="spinner-border" role="status" style="width: 4rem; height: 4rem;">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p class="mt-3" style="font-size: 1.2rem;">Loading...</p>
+        </div>
+    </div>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -126,5 +136,54 @@
         @yield('content')
     </main>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Show loading on all link clicks (except # links)
+    document.addEventListener('click', function(e) {
+        const target = e.target.closest('a');
+        if (target && target.href && !target.href.includes('#') && !target.hasAttribute('data-toggle')) {
+            loadingOverlay.style.display = 'flex';
+        }
+    });
+
+    // Show loading on form submissions
+    document.addEventListener('submit', function(e) {
+        if (e.target.classList.contains('page-link-form') || !e.target.hasAttribute('data-no-loading')) {
+            loadingOverlay.style.display = 'flex';
+        }
+    });
+
+    // Show loading on button clicks with specific class
+    document.querySelectorAll('.add-to-cart').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            if (!this.disabled) {
+                setTimeout(function() {
+                    loadingOverlay.style.display = 'flex';
+                }, 100);
+            }
+        });
+    });
+
+    // Hide loading when page is fully loaded
+    window.addEventListener('pageshow', function() {
+        loadingOverlay.style.display = 'none';
+    });
+
+    // Hide loading if navigation is cancelled
+    window.addEventListener('beforeunload', function() {
+        setTimeout(function() {
+            loadingOverlay.style.display = 'none';
+        }, 3000);
+    });
+
+    // Initialize tooltips
+    if (typeof $ !== 'undefined' && $.fn.tooltip) {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+});
+</script>
 </body>
 </html>
