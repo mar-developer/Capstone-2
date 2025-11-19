@@ -24,28 +24,21 @@ Route::get('logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/UserAccount/{id}', [\App\Http\Controllers\UserAccount::class, 'index'])->middleware('auth');
 
-Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function () {
-
-    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user')->middleware('auth');
-    Route::get('/items', [\App\Http\Controllers\ItemsController::class, 'index'])->name('items')->middleware('auth');
-    Route::get( '/requests', [\App\Http\Controllers\RequestsController::class, 'index'])->name('requests')->middleware('auth');
-
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
+    Route::get('/items', [\App\Http\Controllers\ItemsController::class, 'index'])->name('items');
+    Route::get('/requests', [\App\Http\Controllers\RequestsController::class, 'index'])->name('requests');
 });
 
-Route::group(['middleware' => 'App\Http\Middleware\UserMiddleware'], function () {
-
-    Route::get('/logs', [\App\Http\Controllers\LogsController::class, 'index'])->name('logs')->middleware('auth');
-    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions')->middleware('auth');
-    Route::get('/cart/{id}', [\App\Http\Controllers\ItemUserController::class, 'index'])->name('cart')->middleware('auth');
-    Route::get('/catalog', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog')->middleware('auth');
-    Route::get('/logs', [\App\Http\Controllers\LogsController::class, 'index'])->name('logs')->middleware('auth');
-
+Route::group(['middleware' => ['auth', 'user']], function () {
+    Route::get('/logs', [\App\Http\Controllers\LogsController::class, 'index'])->name('logs');
+    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions');
+    Route::get('/cart/{id}', [\App\Http\Controllers\ItemUserController::class, 'index'])->name('cart');
+    Route::get('/catalog', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
 });
 
-
-Route::group(['middleware' => 'App\Http\Middleware\StatusMiddleware'], function () {
-    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions')->middleware('auth');
-
+Route::group(['middleware' => ['auth', 'status']], function () {
+    Route::get('/transactions/{id}', [\App\Http\Controllers\TransactionsController::class, 'index'])->name('Transactions');
 });
 
 

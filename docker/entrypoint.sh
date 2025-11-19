@@ -95,16 +95,30 @@ else
     echo "Frontend assets already built"
 fi
 
-# Fix permissions
-echo "Setting permissions..."
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache 2>/dev/null || true
-chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache 2>/dev/null || true
-
-# Create storage directories if they don't exist
+# Create storage directories if they don't exist (must be created before setting permissions)
+echo "Creating storage directories..."
 mkdir -p /var/www/html/storage/framework/cache
 mkdir -p /var/www/html/storage/framework/sessions
 mkdir -p /var/www/html/storage/framework/views
 mkdir -p /var/www/html/storage/logs
+mkdir -p /var/www/html/storage/app/public
+mkdir -p /var/www/html/bootstrap/cache
+
+# Fix permissions (must be done after creating directories)
+echo "Setting permissions on storage and cache directories..."
+chown -R www-data:www-data /var/www/html/storage
+chown -R www-data:www-data /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage
+chmod -R 775 /var/www/html/bootstrap/cache
+
+echo "✓ Storage permissions configured correctly"
+
+# Clear Laravel caches to prevent stale configuration issues
+echo "Clearing Laravel caches..."
+php artisan config:clear 2>/dev/null || echo "Config cache already clear"
+php artisan route:clear 2>/dev/null || echo "Route cache already clear"
+php artisan view:clear 2>/dev/null || echo "View cache already clear"
+echo "✓ Caches cleared"
 
 # Final verification before starting the application
 echo ""
