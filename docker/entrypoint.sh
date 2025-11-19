@@ -40,7 +40,11 @@ fi
 
 # Generate APP_KEY if it's empty or not set (must run after composer install)
 if [ -f ".env" ]; then
-    if ! grep -q "APP_KEY=base64:" .env 2>/dev/null; then
+    # Extract the current APP_KEY value
+    CURRENT_KEY=$(grep "^APP_KEY=" .env | cut -d '=' -f2-)
+
+    # Check if APP_KEY is empty or doesn't contain base64:
+    if [ -z "$CURRENT_KEY" ] || [[ ! "$CURRENT_KEY" =~ ^base64: ]]; then
         echo "Generating application key..."
         php artisan key:generate --force
         echo "✓ Application key generated"
