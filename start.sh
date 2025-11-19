@@ -60,14 +60,15 @@ else
 fi
 
 echo ""
-echo "Running database migrations..."
-docker-compose exec -T app php artisan migrate --force
+echo "Running database migrations with fresh seed..."
+echo "⚠️  This will DROP all tables and re-seed the database"
+docker-compose exec -T app php artisan migrate:fresh --seed --force
 
 if [ $? -eq 0 ]; then
-    echo "✓ Database migrations completed"
+    echo "✓ Database migrated and seeded successfully"
 else
-    echo "⚠️  Migration failed. You may need to run it manually:"
-    echo "   docker-compose exec app php artisan migrate"
+    echo "⚠️  Migration/seeding failed. You may need to run it manually:"
+    echo "   docker-compose exec app php artisan migrate:fresh --seed"
 fi
 
 echo ""
