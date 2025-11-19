@@ -38,6 +38,17 @@ else
     echo "Composer dependencies already installed"
 fi
 
+# Generate APP_KEY if it's empty or not set (must run after composer install)
+if [ -f ".env" ]; then
+    if ! grep -q "APP_KEY=base64:" .env 2>/dev/null; then
+        echo "Generating application key..."
+        php artisan key:generate --force
+        echo "✓ Application key generated"
+    else
+        echo "✓ Application key already set"
+    fi
+fi
+
 # Install npm dependencies if node_modules doesn't exist or is empty
 if [ ! -d "node_modules" ] || [ -z "$(ls -A node_modules)" ]; then
     echo "Installing NPM dependencies..."
