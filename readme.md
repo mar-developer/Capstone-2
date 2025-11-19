@@ -1,71 +1,263 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Capstone - Inventory Management System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+A comprehensive inventory management system built with Laravel and Vue.js, designed to track items, manage user requests, and maintain transaction logs.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **User Management**: Admin and user role-based access control
+- **Inventory Tracking**: Manage items with serial numbers
+- **Request System**: Users can request items, admins can approve/reject
+- **Transaction Logging**: Complete audit trail of all inventory movements
+- **User Authentication**: Secure login system with account approval workflow
+- **Admin Dashboard**: Comprehensive admin panel for managing users and inventory
+- **Database Seeding**: Pre-populated test data for development
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel (PHP)
+- **Frontend**: Vue.js 3 with Vite
+- **Database**: MySQL 8.0
+- **Containerization**: Docker & Docker Compose
+- **Styling**: Bootstrap 5, Sass
+- **Additional Libraries**: jQuery, Axios, Lodash
 
-## Learning Laravel
+## Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Docker Desktop installed and running
+- Git (for cloning the repository)
+- Basic knowledge of Laravel and Docker
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+## Quick Start
 
-## Laravel Sponsors
+### 1. Clone the Repository
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+git clone <repository-url>
+cd Capstone-2
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+### 2. Run the Start Script
+
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+The `start.sh` script will:
+- Check if Docker is running
+- Create `.env` file from `.env.example`
+- Build and start Docker containers
+- Install dependencies
+- Generate application key
+- Drop all tables and run fresh migrations
+- Seed the database with test data
+
+### 3. Access the Application
+
+- **Application**: http://localhost:8000
+- **phpMyAdmin**: http://localhost:8080
+
+## Manual Setup
+
+If you prefer to set up manually:
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Start Docker containers
+docker-compose up -d --build
+
+# Install dependencies
+docker-compose exec app composer install
+
+# Generate application key
+docker-compose exec app php artisan key:generate
+
+# Run migrations and seed database
+docker-compose exec app php artisan migrate:fresh --seed
+```
+
+## Configuration
+
+### Environment Variables
+
+Key environment variables in `.env`:
+
+```env
+APP_NAME=Capstone
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=capstone_db
+DB_USERNAME=capstone_user
+DB_PASSWORD=capstone_password
+```
+
+### Database Access
+
+**phpMyAdmin Credentials:**
+- Server: `db`
+- Username: `root`
+- Password: `root_password`
+
+Or use the application user:
+- Username: `capstone_user`
+- Password: `capstone_password`
+
+## User Roles
+
+The system supports three access levels:
+
+1. **Super Admin**: Full system access
+2. **Admin**: Can manage users, items, and requests
+3. **User**: Can view catalog and make requests
+
+### Test Accounts
+
+After running the seeders, you'll have test accounts available. Check the `UserSeeder.php` file for credentials.
+
+## Frontend Development
+
+To run the Vite development server for hot module replacement:
+
+```bash
+npm install
+npm run dev
+```
+
+The Vite dev server will run on the default port (5173).
+
+## Project Structure
+
+```
+Capstone-2/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/      # Application controllers
+│   │   └── Middleware/        # Custom middleware
+│   └── User.php               # User model
+├── database/
+│   ├── migrations/            # Database migrations
+│   └── seeders/               # Database seeders
+├── docker/                    # Docker configuration files
+├── resources/
+│   ├── js/                    # Vue.js components
+│   ├── sass/                  # Styling
+│   └── views/                 # Blade templates
+├── routes/
+│   ├── web.php               # Web routes
+│   └── api.php               # API routes
+├── docker-compose.yml        # Docker services configuration
+├── start.sh                  # Automated startup script
+└── vite.config.js           # Vite configuration
+```
+
+## Database Schema
+
+The application includes the following main tables:
+
+- **users**: User accounts with access levels
+- **items**: Inventory items
+- **serials**: Serial numbers for items
+- **transactions**: Item request/return transactions
+- **logs**: System activity logs
+
+## Useful Docker Commands
+
+```bash
+# View logs
+docker-compose logs -f
+
+# View app logs only
+docker-compose logs -f app
+
+# Stop containers
+docker-compose stop
+
+# Restart containers
+docker-compose restart
+
+# Access app container shell
+docker-compose exec app bash
+
+# Run artisan commands
+docker-compose exec app php artisan <command>
+
+# Rebuild containers
+docker-compose down
+docker-compose up -d --build
+```
+
+## Development Workflow
+
+1. Make code changes in your local files
+2. For PHP changes: Rebuild the Docker image
+   ```bash
+   docker-compose down
+   docker-compose up -d --build
+   ```
+3. For frontend changes: Run `npm run dev` for hot reload
+4. Database changes: Create migrations and run them
+   ```bash
+   docker-compose exec app php artisan make:migration <migration_name>
+   docker-compose exec app php artisan migrate
+   ```
+
+## Troubleshooting
+
+### Docker Container Issues
+
+If containers fail to start:
+```bash
+docker-compose down
+docker-compose up -d --build
+docker-compose logs
+```
+
+### Permission Issues
+
+If you encounter permission errors:
+```bash
+docker-compose exec app chmod -R 775 storage bootstrap/cache
+docker-compose exec app chown -R www-data:www-data storage bootstrap/cache
+```
+
+### Database Connection Issues
+
+1. Ensure the database container is running:
+   ```bash
+   docker-compose ps
+   ```
+2. Check database logs:
+   ```bash
+   docker-compose logs db
+   ```
+
+### Port Conflicts
+
+If ports 8000, 8080, or 3306 are already in use, modify the port mappings in `docker-compose.yml`.
+
+## Recent Updates
+
+- Fixed AdminMiddleware to properly check user access levels
+- Updated start.sh to include database cleanup and seeding
+- Configured for Docker deployment with MySQL database
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License.
+
+## Support
+
+For issues and questions, please open an issue in the repository.
