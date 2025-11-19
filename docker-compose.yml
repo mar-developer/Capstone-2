@@ -25,7 +25,6 @@ services:
 
   db:
     image: mysql:8.0
-    platform: linux/amd64
     container_name: capstone-db
     restart: unless-stopped
     environment:
@@ -42,7 +41,6 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    platform: linux/amd64
     container_name: capstone-phpmyadmin
     restart: unless-stopped
     environment:
