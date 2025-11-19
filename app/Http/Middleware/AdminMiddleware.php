@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Session;
 
 class AdminMiddleware
 {
@@ -16,12 +15,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Session::has('user')) {
-            if (Session::get('user')->isAdmin == true) {
-                return $next($request);
-            }
-        } else {
-            return redirect('/');
+        if ($request->user() && ($request->user()->access == 'admin' || $request->user()->access == 'super_admin')) {
+            return $next($request);
         }
+
+        return redirect('/');
     }
 }
