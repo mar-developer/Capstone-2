@@ -105,7 +105,7 @@ if [ $check_failed -eq 0 ]; then
     echo ""
     echo "Access your application at:"
     echo "  • Application:  http://localhost:8000"
-    echo "  • phpMyAdmin:   http://localhost:8080"
+    echo "  • phpMyAdmin:   http://localhost:8081"
     echo "  • Health Check: http://localhost:8000/up"
 else
     echo -e "${RED}✗ Some checks failed. Please review the errors above.${NC}"

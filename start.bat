@@ -80,7 +80,7 @@ echo ======================================
 echo.
 echo Access your application at:
 echo   * Application:  http://localhost:8000
-echo   * phpMyAdmin:   http://localhost:8080
+echo   * phpMyAdmin:   http://localhost:8081
 echo.
 echo Useful commands:
 echo   * View logs:    docker-compose logs -f

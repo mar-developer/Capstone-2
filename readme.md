@@ -55,7 +55,7 @@ The `start.sh` script will:
 ### 3. Access the Application
 
 - **Application**: http://localhost:8000
-- **phpMyAdmin**: http://localhost:8080
+- **phpMyAdmin**: http://localhost:8081
 
 ## Manual Setup
 
@@ -238,7 +238,7 @@ docker-compose exec app chown -R www-data:www-data storage bootstrap/cache
 
 ### Port Conflicts
 
-If ports 8000, 8080, or 3306 are already in use, modify the port mappings in `docker-compose.yml`.
+If ports 8000, 8081, or 3306 are already in use, modify the port mappings in `docker-compose.yml`.
 
 ## Recent Updates
 

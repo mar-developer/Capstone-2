@@ -53,7 +53,7 @@ docker-compose exec app php artisan db:seed
 ## Access the Application
 
 - **Application**: http://localhost:8000
-- **phpMyAdmin**: http://localhost:8080
+- **phpMyAdmin**: http://localhost:8081
   - Server: `db`
   - Username: `capstone_user`
   - Password: `capstone_password`
@@ -162,7 +162,7 @@ docker-compose exec app npm run dev
 ## Database Access
 
 ### Using phpMyAdmin
-Visit http://localhost:8080 and use the credentials from `docker-compose.yml`.
+Visit http://localhost:8081 and use the credentials from `docker-compose.yml`.
 
 ### Using MySQL Client
 ```bash
@@ -192,7 +192,7 @@ docker-compose exec app chown -R www-data:www-data /var/www/html/bootstrap/cache
 ## Troubleshooting
 
 ### Port Already in Use
-If ports 8000, 3306, or 8080 are already in use, edit `docker-compose.yml` to change the port mappings:
+If ports 8000, 3306, or 8081 are already in use, edit `docker-compose.yml` to change the port mappings:
 ```yaml
 ports:
   - "8001:80"  # Change 8000 to 8001
